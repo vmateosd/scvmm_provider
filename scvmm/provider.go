@@ -54,5 +54,6 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	}
 
 	log.Println("[DEBUG] Initializing Winrm Connection")
-	return config.Connection()
+	return config.GetWinRMConnection()
 }
+º

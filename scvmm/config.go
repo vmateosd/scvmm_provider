@@ -5,23 +5,13 @@ import (
 	"log"
 	"strings"
 
-	"github.com/masterzen/winrm"
-)
-
-// Config ... SCVMM configuration details
-type Config struct {
-	ServerIP string
-	Port     int
-	Username string
-	Password string
-}
-
-import (
 	"crypto/tls"
 	"io/ioutil"
 	"net"
 	"net/http"
 	"time"
+
+	"github.com/masterzen/winrm"
 
 	"github.com/jcmturner/gokrb5/v8/iana/etypeID"
 
@@ -33,6 +23,14 @@ import (
 	"github.com/masterzen/winrm/soap"
 	"github.com/packer-community/winrmcp/winrmcp"
 )
+
+// Config ... SCVMM configuration details
+type Config struct {
+	ServerIP string
+	Port     int
+	Username string
+	Password string
+}
 
 // ProviderConfig holds all the information necessary to configure the provider
 type ProviderConfig struct {
@@ -283,9 +281,6 @@ func (c *KerberosTransporter) Post(_ *winrm.Client, request *soap.SoapMessage) (
 	}
 	return string(body), err
 }
-
-
-
 
 //Connection ... Create a new connection with winrm to Powershell.
 func (c *Config) Connection() (*winrm.Client, error) {
